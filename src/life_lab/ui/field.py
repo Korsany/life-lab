@@ -10,15 +10,25 @@ from ..core.rules import RULES, parse
 class Field(QWidget):
     def __init__(self, w, h, cell):
         super().__init__()
-        self.w, self.h, self.cell = w, h, cell
-        self.g = [[0] * w for _ in range(h)]
         self.b, self.s = parse(RULES["Жизнь"])
         self.v = 1
+        self.setup(w, h, cell, False)
+
+    def setup(self, w, h, cell, lines):
+        self.w, self.h, self.cell, self.lines = w, h, cell, lines
+        self.g = [[0] * w for _ in range(h)]
         self.setFixedSize(w * cell, h * cell)
+        self.update()
 
     def paintEvent(self, e):
         p = QPainter(self)
         p.fillRect(self.rect(), QColor("#101014"))
+        if self.lines:
+            p.setPen(QColor("#20242c"))
+            for x in range(self.w + 1):
+                p.drawLine(x * self.cell, 0, x * self.cell, self.h * self.cell)
+            for y in range(self.h + 1):
+                p.drawLine(0, y * self.cell, self.w * self.cell, y * self.cell)
         p.setPen(Qt.PenStyle.NoPen)
         p.setBrush(QColor("#7ad"))
         for y in range(self.h):
