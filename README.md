@@ -13,3 +13,7 @@ uv run life-lab
 ```
 uv run python -m life_lab
 ```
+
+## Документы
+
+- [Пояснительная записка](explanatory-note.md)

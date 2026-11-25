@@ -76,7 +76,7 @@
 
 ## Запуск
 
-Нужен Python 3.10 или новее и uv. В папке проекта:
+Нужен Python 3.10 или новее. Если есть uv, в папке проекта:
 
 ```
 uv sync
@@ -84,6 +84,30 @@ uv run life-lab
 ```
 
 Второй вариант запуска: `uv run python -m life_lab`.
+
+### Без uv
+
+Если uv нет, хватит Python и pip.
+
+Windows:
+
+```
+python -m venv .venv
+.venv\Scripts\activate
+pip install .
+life-lab
+```
+
+Linux и macOS:
+
+```
+python3 -m venv .venv
+source .venv/bin/activate
+pip install .
+life-lab
+```
+
+Вместо `life-lab` можно запустить `python -m life_lab`. Выйти из окружения: `deactivate`. Если pip старый, перед установкой стоит обновить его: `python -m pip install --upgrade pip`.
 
 ## Интерфейс
 
